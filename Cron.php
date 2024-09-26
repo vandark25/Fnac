@@ -5,7 +5,7 @@
 
 namespace FacturaScripts\Plugins\Fnac;
 
-use FacturaScripts\Core\Base\CronClass;
+use FacturaScripts\Core\Template\CronClass;
 use FacturaScripts\Plugins\Fnac\CronJob\FnacSyncShopOrders;
 
 /**
@@ -13,11 +13,15 @@ use FacturaScripts\Plugins\Fnac\CronJob\FnacSyncShopOrders;
  */
 class Cron extends CronClass
 {
-    public function run()
+    public function run(): void
     {
-        if ($this->isTimeForJob(FnacSyncShopOrders::JOB_NAME, FnacSyncShopOrders::JOB_PERIOD)) {
-            FnacSyncShopOrders::run();
-            $this->jobDone(FnacSyncShopOrders::JOB_NAME);
-        }
+        $this->job(FnacSyncShopOrders::JOB_NAME)
+            ->every(FnacSyncShopOrders::JOB_PERIOD)
+            ->withoutOverlapping()
+            ->run(
+                function (): void {
+                    FnacSyncShopOrders::run();
+                }
+            );
     }
 }
