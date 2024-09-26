@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Copyright (C) 2023 Carlos Garcia Gomez <carlos@facturascripts.com>
+* Author Daniel Fernández Giménez <hola@danielfg.es>
+-->
+<view>
+    <columns>
+        <column name="code" display="none" order="100">
+            <widget type="text" fieldname="id"/>
+        </column>
+        <column name="name" order="110">
+            <widget type="text" fieldname="nombre"/>
+        </column>
+        <column name="warehouse" order="120">
+            <widget type="select" fieldname="codalmacen" required="true">
+                <values source="almacenes" fieldcode="codalmacen" fieldtitle="nombre"/>
+            </widget>
+        </column>
+        <column name="agent" order="130">
+            <widget type="select" fieldname="codagente">
+                <values source="agentes" fieldcode="codagente" fieldtitle="nombre"/>
+            </widget>
+        </column>
+        <column name="serie" order="140">
+            <widget type="select" fieldname="codserie">
+                <values source="series" fieldcode="codserie" fieldtitle="descripcion"/>
+            </widget>
+        </column>
+        <column name="active" display="right" order="150">
+            <widget type="checkbox" fieldname="activa"/>
+        </column>
+    </columns>
+    <rows>
+        <row type="status">
+            <option color="success" fieldname="activa">1</option>
+        </row>
+    </rows>
+</view>

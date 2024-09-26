@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+* Copyright (C) 2023 Carlos Garcia Gomez <carlos@facturascripts.com>
+* Author Daniel Fernández Giménez <hola@danielfg.es>
+-->
+<table>
+    <column>
+        <name>activa</name>
+        <type>boolean</type>
+        <default>TRUE</default>
+    </column>
+    <column>
+        <name>apikey</name>
+        <type>character varying(200)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>apiurl</name>
+        <type>character varying(200)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>creationdate</name>
+        <type>timestamp</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>codagente</name>
+        <type>character varying(10)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>codalmacen</name>
+        <type>character varying(4)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>codimpuesto</name>
+        <type>character varying(10)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>codpago</name>
+        <type>character varying(10)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>codserie</name>
+        <type>character varying(4)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>codserieb</name>
+        <type>character varying(4)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>codserier</name>
+        <type>character varying(4)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>codserierb</name>
+        <type>character varying(4)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>enviarfacturas</name>
+        <type>boolean</type>
+    </column>
+    <column>
+        <name>fechafin</name>
+        <type>date</type>
+    </column>
+    <column>
+        <name>fechaini</name>
+        <type>date</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>filtercountry</name>
+        <type>character varying(10)</type>
+    </column>
+    <column>
+        <name>id</name>
+        <type>serial</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>langcode</name>
+        <type>character varying(10)</type>
+    </column>
+    <column>
+        <name>lastnick</name>
+        <type>character varying(50)</type>
+    </column>
+    <column>
+        <name>lastupdate</name>
+        <type>timestamp</type>
+    </column>
+    <column>
+        <name>maxtotalcon</name>
+        <type>integer</type>
+    </column>
+    <column>
+        <name>maxtotalsin</name>
+        <type>integer</type>
+    </column>
+    <column>
+        <name>mintotalcon</name>
+        <type>integer</type>
+    </column>
+    <column>
+        <name>mintotalsin</name>
+        <type>integer</type>
+    </column>
+    <column>
+        <name>nick</name>
+        <type>character varying(50)</type>
+    </column>
+    <column>
+        <name>nombre</name>
+        <type>character varying(50)</type>
+    </column>
+    <column>
+        <name>partnerid</name>
+        <type>character varying(200)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>shopid</name>
+        <type>character varying(200)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>solovies</name>
+        <type>character varying(2)</type>
+    </column>
+    <constraint>
+        <name>fnac_shops_pkey</name>
+        <type>PRIMARY KEY (id)</type>
+    </constraint>
+    <constraint>
+        <name>ca_fnac_shops_series_codserie</name>
+        <type>FOREIGN KEY (codserie) REFERENCES series (codserie) ON DELETE RESTRICT ON UPDATE CASCADE</type>
+    </constraint>
+    <constraint>
+        <name>ca_fnac_shops_series_codserieb</name>
+        <type>FOREIGN KEY (codserieb) REFERENCES series (codserie) ON DELETE RESTRICT ON UPDATE CASCADE</type>
+    </constraint>
+    <constraint>
+        <name>ca_fnac_shops_series_codserier</name>
+        <type>FOREIGN KEY (codserier) REFERENCES series (codserie) ON DELETE RESTRICT ON UPDATE CASCADE</type>
+    </constraint>
+    <constraint>
+        <name>ca_fnac_shops_series_codserierb</name>
+        <type>FOREIGN KEY (codserierb) REFERENCES series (codserie) ON DELETE RESTRICT ON UPDATE CASCADE</type>
+    </constraint>
+    <constraint>
+        <name>ca_fnac_shops_agentes</name>
+        <type>FOREIGN KEY (codagente) REFERENCES agentes (codagente) ON DELETE RESTRICT ON UPDATE CASCADE</type>
+    </constraint>
+    <constraint>
+        <name>ca_fnac_shops_formaspago</name>
+        <type>FOREIGN KEY (codpago) REFERENCES formaspago (codpago) ON DELETE RESTRICT ON UPDATE CASCADE</type>
+    </constraint>
+    <constraint>
+        <name>ca_fnac_shops_almacenes</name>
+        <type>FOREIGN KEY (codalmacen) REFERENCES almacenes (codalmacen) ON DELETE RESTRICT ON UPDATE CASCADE</type>
+    </constraint>
+    <constraint>
+        <name>ca_fnac_shops_impuestos</name>
+        <type>FOREIGN KEY (codimpuesto) REFERENCES impuestos (codimpuesto) ON DELETE RESTRICT ON UPDATE CASCADE</type>
+    </constraint>
+    <constraint>
+        <name>ca_fnac_shops_users_lastnick</name>
+        <type>FOREIGN KEY (lastnick) REFERENCES users (nick) ON DELETE SET NULL ON UPDATE CASCADE</type>
+    </constraint>
+    <constraint>
+        <name>ca_fnac_shops_users_nick</name>
+        <type>FOREIGN KEY (nick) REFERENCES users (nick) ON DELETE SET NULL ON UPDATE CASCADE</type>
+    </constraint>
+</table>
